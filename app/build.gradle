@@ -3,10 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-def keystorePropertiesFile = rootProject.file("keystore.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
 Properties loadProperties(String path) {
     def propertiesFile = rootProject.file(path)
     def properties = new Properties()
@@ -14,6 +10,8 @@ Properties loadProperties(String path) {
     return properties
 }
 def localProperties = loadProperties("local.properties")
+
+def keystoreProperties = loadProperties("keystore.properties")
 
 android {
     compileSdk 31
