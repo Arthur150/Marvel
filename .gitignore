@@ -33,6 +33,9 @@ keystore.p12
 # Google Services (e.g. APIs or Firebase)
 google-services.json
 
+# API
+/api-key.properties
+
 # Android Profiling
 *.hprof
 
