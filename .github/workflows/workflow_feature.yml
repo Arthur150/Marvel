@@ -15,7 +15,7 @@ jobs:
           gpg \
             -d \
             --batch \
-            --passphrase "${echo "${{ secrets.PASSWORD }}" | base64 --decode}" \
+            --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${KEYSTORE_P12_ASC_FILE}"> "keystore.p12"
       - run: |
           KEYSTORE_PROPERTIES_ASC_FILE="keystore_properties.asc"
@@ -23,15 +23,15 @@ jobs:
           gpg \
             -d \
             --batch \
-            --passphrase "${echo "${{ secrets.PASSWORD }}" | base64 --decode}" \
+            --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${KEYSTORE_PROPERTIES_ASC_FILE}"> "keystore.properties"
       - run: |
           API_KEY_PROPERTIES_ASC_FILE="api_key_properties.asc"
-          echo "${{ secrets.API_KEY_PROPERTIES}}">>"${API_KEY_PROPERTIES_ASC_FILE}}"
+          echo "${{ secrets.API_KEY_PROPERTIES}}">> "${API_KEY_PROPERTIES_ASC_FILE}}"
           gpg \
             -d \
             --batch \
-            --passphrase "${echo "${{ secrets.PASSWORD }}" | base64 --decode}" \
+            --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${API_KEY_PROPERTIES_ASC_FILE}"> "api-key.properties"
       - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" assembleDevelopmentRelease
       - uses: actions/upload-artifact@v3
