@@ -4,29 +4,35 @@ on:
     branches:
       - 'feature/*'
 jobs:
-  print_hello_world:
+  build_apk:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - run: chmod +x gradlew
       - run: |
+          KEYSTORE_P12_ASC_FILE="keystore.asc"
+          echo "${{ secrets.KEYSTORE_P12}}">>"${KEYSTORE_P12_ASC_FILE}}"
           gpg \
             -d \
             --batch \
-            --passphrase "${echo "${{ secrets.PASSWORD }}" | base64 --decode}" \
-            "${{ secrets.KEYSTORE_P12 }}"> "keystore.p12"
+            --passphrase ""${echo "${{ secrets.PASSWORD }}" | base64 --decode}" \
+            "${KEYSTORE_P12_ASC_FILE}"> "keystore.p12"
       - run: |
+          KEYSTORE_PROPERTIES_ASC_FILE="keystore_properties.asc"
+          echo "${{ secrets.KEYSTORE_PROPERTIES}}">>"${KEYSTORE_PROPERTIES_ASC_FILE}}"
           gpg \
             -d \
             --batch \
             --passphrase "${echo "${{ secrets.PASSWORD }}" | base64 --decode}" \
-            "${{ secrets.KEYSTORE_PROPERTIES }}"> "keystore.properties"
+            "${KEYSTORE_PROPERTIES_ASC_FILE}"> "keystore.properties"
       - run: |
+          API_KEY_PROPERTIES_ASC_FILE="api_key_properties.asc"
+          echo "${{ secrets.API_KEY_PROPERTIES}}">>"${API_KEY_PROPERTIES_ASC_FILE}}"
           gpg \
             -d \
             --batch \
             --passphrase "${echo "${{ secrets.PASSWORD }}" | base64 --decode}" \
-            "${{ secrets.API_KEY_PROPERTIES }}"> "api-key.properties"
+            "${API_KEY_PROPERTIES_ASC_FILE}"> "api-key.properties"
       - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" assembleDevelopmentRelease
       - uses: actions/upload-artifact@v3
         with:
