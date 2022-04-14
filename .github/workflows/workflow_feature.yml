@@ -11,7 +11,7 @@ jobs:
       - run: chmod +x gradlew
       - run: |
           KEYSTORE_P12_ASC_FILE="keystore.asc"
-          echo "${{ secrets.KEYSTORE_P12}}">>"${KEYSTORE_P12_ASC_FILE}}"
+          echo "${{ secrets.KEYSTORE_P12}}">>"${KEYSTORE_P12_ASC_FILE}"
           gpg \
             -d \
             --batch \
@@ -19,7 +19,7 @@ jobs:
             "${KEYSTORE_P12_ASC_FILE}"> "keystore.p12"
       - run: |
           KEYSTORE_PROPERTIES_ASC_FILE="keystore_properties.asc"
-          echo "${{ secrets.KEYSTORE_PROPERTIES}}">>"${KEYSTORE_PROPERTIES_ASC_FILE}}"
+          echo "${{ secrets.KEYSTORE_PROPERTIES}}">>"${KEYSTORE_PROPERTIES_ASC_FILE}"
           gpg \
             -d \
             --batch \
@@ -27,7 +27,7 @@ jobs:
             "${KEYSTORE_PROPERTIES_ASC_FILE}"> "keystore.properties"
       - run: |
           API_KEY_PROPERTIES_ASC_FILE="api_key_properties.asc"
-          echo "${{ secrets.API_KEY_PROPERTIES}}">> "${API_KEY_PROPERTIES_ASC_FILE}}"
+          echo "${{ secrets.API_KEY_PROPERTIES}}">> "${API_KEY_PROPERTIES_ASC_FILE}"
           gpg \
             -d \
             --batch \
