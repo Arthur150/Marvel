@@ -10,11 +10,11 @@ jobs:
       - uses: actions/checkout@v3
       - run: chmod +x gradlew
       - run: |
-        gpg \
-          -d \
-          --batch \
-          --passphrase "${echo "${{ secrets.PASSWORD }}" | base64 --decode}" \
-          "${{ secrets.KEYSTORE_P12 }}"> "keystore.p12"
+          gpg \
+            -d \
+            --batch \
+            --passphrase "${echo "${{ secrets.PASSWORD }}" | base64 --decode}" \
+            "${{ secrets.KEYSTORE_P12 }}"> "keystore.p12"
       - run: |
           gpg \
             -d \
