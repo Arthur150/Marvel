@@ -33,6 +33,9 @@ keystore.p12
 # Google Services (e.g. APIs or Firebase)
 google-services.json
 
+# API
+/api-key.properties
+
 # Android Profiling
 *.hprof
 
@@ -70,7 +73,6 @@ gen-external-apklibs
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -180,6 +182,3 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-### AndroidStudio Patch ###
-
-!/gradle/wrapper/gradle-wrapper.jar
