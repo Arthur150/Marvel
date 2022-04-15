@@ -114,4 +114,22 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Okhttp3
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    // Coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
 }
