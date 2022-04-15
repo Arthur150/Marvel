@@ -1,7 +1,10 @@
 package com.example.marvel
 
 import android.app.Application
-import com.example.marvel.koin.KoinModules
+import com.example.marvel.data.datasource.DataSourceModules
+import com.example.marvel.data.repository.RepositoryModules
+import com.example.marvel.domain.DomainModules
+import com.example.marvel.ui.UIModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -9,9 +12,9 @@ class MarvelApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        /*startKoin {
+        startKoin {
             androidContext(this@MarvelApplication)
-            modules(*KoinModules.all)
-        }*/
+            modules(*UIModules.all,*DomainModules.all,*RepositoryModules.all,*DataSourceModules.all)
+        }
     }
 }
