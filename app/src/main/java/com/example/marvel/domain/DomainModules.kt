@@ -6,6 +6,7 @@ object DomainModules {
     private val useCaseModule = module {
         factory {
             GetAllCharacterUseCase(get())
+            GetHashMd5UseCase()
         }
     }
 

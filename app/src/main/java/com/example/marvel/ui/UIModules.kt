@@ -4,11 +4,11 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 object UIModules {
-        private val characterListModule = module {
-            viewModel {
-                CharacterListViewmodel(get())
-            }
+    private val characterListModule = module {
+        viewModel {
+            CharacterListViewmodel(get())
         }
+    }
 
-        val all = arrayOf(characterListModule)
+    val all = arrayOf(characterListModule)
 }

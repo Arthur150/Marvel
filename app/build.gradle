@@ -53,6 +53,13 @@ android {
             debuggable true
         }
 
+        mock {
+            applicationIdSuffix ".mock"
+            debuggable true
+
+            buildConfigField "String", "BASE_URL", "\"https://b8d0e3fc-5257-43b6-8a1f-e517b4ae3793.mock.pstmn.io\""
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

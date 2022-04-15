@@ -4,9 +4,9 @@ import com.example.marvel.data.repository.CharacterRepository
 import com.example.marvel.model.JsonResponse
 import com.example.marvel.model.MarvelCharacter
 
-class GetAllCharacterUseCase(val characterRepository: CharacterRepository) {
+class GetAllCharacterUseCase(private val characterRepository: CharacterRepository) {
 
-    operator fun invoke() {
-
+    suspend operator fun invoke(): List<MarvelCharacter> {
+        return characterRepository.getPaginatedCharacter().orEmpty()
     }
 }

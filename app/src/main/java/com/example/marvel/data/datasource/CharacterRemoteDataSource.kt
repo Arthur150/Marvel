@@ -1,5 +1,7 @@
 package com.example.marvel.data.datasource
 
+import com.example.marvel.model.MarvelCharacter
+
 interface CharacterRemoteDataSource {
-    fun getAllCharacter()
+    suspend fun getAllCharacter(): Result<List<MarvelCharacter>>
 }
