@@ -7,6 +7,6 @@ import com.example.marvel.model.MarvelCharacter
 class GetAllCharacterUseCase(private val characterRepository: CharacterRepository) {
 
     suspend operator fun invoke(): List<MarvelCharacter> {
-        return characterRepository.getPaginatedCharacter().orEmpty()
+        return characterRepository.getPaginatedCharacter()
     }
 }

@@ -10,22 +10,18 @@ import java.lang.IllegalStateException
 
 class CharacterRemoteDataSourceImpl(private val characterService: CharacterService) :
     CharacterRemoteDataSource {
-    override suspend fun getAllCharacter(): Result<List<MarvelCharacter>> {
+    override suspend fun getAllCharacter(): List<MarvelCharacter> {
         return try {
             val response: Response<JsonResponse<MarvelCharacter>> = characterService.getCharacters(0)
 
             if (response.isSuccessful){
-                val jsonResponse = Gson().fromJson<JsonResponse<MarvelCharacter>>(
-                    Gson().toJson(response.body()),
-                    object : TypeToken<JsonResponse<MarvelCharacter>>() {}.type
-                )
-                Result.success(jsonResponse.data.results)
+                response.body()?.data?.results ?: throw IllegalStateException("Body is null")
             } else {
                 throw IllegalStateException("${response.code()}")
             }
         }
         catch (t: Throwable){
-            Result.failure(t)
+            emptyList()
         }
     }
 }
