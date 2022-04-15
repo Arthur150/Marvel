@@ -3,10 +3,11 @@ package com.example.marvel.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.marvel.R
 import com.example.marvel.databinding.ViewHolderMarvelCharacterBinding
 import com.example.marvel.model.MarvelCharacter
-import com.squareup.picasso.Picasso
 
 class MarvelCharacterViewHolder private constructor(
     private val binding: ViewHolderMarvelCharacterBinding
@@ -26,10 +27,10 @@ class MarvelCharacterViewHolder private constructor(
 
     fun bind(marvelCharacter: MarvelCharacter) {
         binding.characterName.text = marvelCharacter.name
-        Picasso.with(binding.root.context)
-            .load("${marvelCharacter.thumbnail.path}.${marvelCharacter.thumbnail.extension}")
-            .placeholder(R.drawable.ic_iron_man)
-            .error(R.drawable.ic_iron_man)
-            .into(binding.characterImage)
+        binding.characterImage.load("${marvelCharacter.thumbnail.path}.${marvelCharacter.thumbnail.extension}") {
+            crossfade(true)
+            placeholder(R.drawable.ic_iron_man)
+            transformations(CircleCropTransformation())
+        }
     }
 }

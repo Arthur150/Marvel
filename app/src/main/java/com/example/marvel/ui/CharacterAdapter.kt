@@ -1,16 +1,9 @@
 package com.example.marvel.ui
 
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.marvel.R
-import com.example.marvel.databinding.ViewHolderMarvelCharacterBinding
 import com.example.marvel.model.MarvelCharacter
-import com.squareup.picasso.Picasso
 
 class CharacterAdapter(
     private val context: Context,
