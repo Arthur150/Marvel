@@ -89,6 +89,7 @@ android {
 
 def koin_version = "3.1.6"
 def nav_version = "2.4.2"
+def paging_version = "3.1.1"
 
 dependencies {
 
@@ -118,14 +119,18 @@ dependencies {
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
-    // Jetpack Compose Integration
-    implementation "androidx.navigation:navigation-compose:$nav_version"
+    // Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // alternatively - without Android dependencies for tests
+    testImplementation "androidx.paging:paging-common:$paging_version"
 
     // Coil
     implementation("io.coil-kt:coil:2.0.0-rc03")
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // Okhttp3
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
