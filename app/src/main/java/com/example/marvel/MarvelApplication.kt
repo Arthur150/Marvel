@@ -9,9 +9,9 @@ class MarvelApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin {
+        /*startKoin {
             androidContext(this@MarvelApplication)
             modules(*KoinModules.all)
-        }
+        }*/
     }
 }
