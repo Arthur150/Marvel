@@ -6,7 +6,7 @@ import org.koin.dsl.module
 object UIModules {
     private val characterListModule = module {
         viewModel {
-            CharacterListViewmodel(get())
+            CharacterListViewModel(get())
         }
     }
 
