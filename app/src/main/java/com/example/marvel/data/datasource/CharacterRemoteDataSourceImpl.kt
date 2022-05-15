@@ -7,18 +7,20 @@ import retrofit2.Response
 
 class CharacterRemoteDataSourceImpl(private val characterService: CharacterService) :
     CharacterRemoteDataSource {
-    override suspend fun getAllCharacter(): List<MarvelCharacter> {
+    override suspend fun getAllCharacter(offset: Int): Result<Pair<Int, List<MarvelCharacter>>> {
         return try {
             val response: Response<JsonResponse<MarvelCharacter>> =
-                characterService.getCharacters(0)
+                characterService.getCharacters(offset)
 
             if (response.isSuccessful) {
-                response.body()?.data?.results ?: throw IllegalStateException("Body is null")
+                val nextOffset = response.body()?.data?.offset?.plus(20) ?: offset
+                val characterList = response.body()?.data?.results
+                Result.success(Pair(nextOffset, characterList ?: emptyList()))
             } else {
-                throw IllegalStateException("${response.code()}")
+                throw IllegalStateException(response.message())
             }
         } catch (t: Throwable) {
-            emptyList()
+            Result.failure(t)
         }
     }
 }
