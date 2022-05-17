@@ -34,7 +34,7 @@ class CharacterDetailFragment : Fragment() {
         val characterImageView = view.findViewById<ImageView>(R.id.characterDetailImageView)
         val characterName = view.findViewById<TextView>(R.id.characterDetailName)
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
 
         viewModel.getCharacter().observe(viewLifecycleOwner){ marvelCharacter ->
             characterName.text = marvelCharacter.name
@@ -43,6 +43,9 @@ class CharacterDetailFragment : Fragment() {
                 placeholder(R.drawable.ic_iron_man)
                 transformations(CircleCropTransformation())
             }
+        }
+        viewModel.getComics().observe(viewLifecycleOwner){ comics ->
+            recyclerView.adapter = ComicsAdapter(comics)
         }
     }
 }

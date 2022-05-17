@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import com.example.marvel.data.datasource.CharacterRemoteDataSource
 import com.example.marvel.data.paging.CharacterPagingSource
 import com.example.marvel.model.MarvelCharacter
+import com.example.marvel.model.MarvelComic
 import kotlinx.coroutines.flow.Flow
 
 class CharacterRepositoryImpl(private val characterRemoteDataSource: CharacterRemoteDataSource) :
@@ -18,5 +19,9 @@ class CharacterRepositoryImpl(private val characterRemoteDataSource: CharacterRe
 
     override suspend fun getCharacter(id: Int): MarvelCharacter? {
         return characterRemoteDataSource.getCharacter(id).getOrNull()
+    }
+
+    override suspend fun getCharacterComics(id: Int): List<MarvelComic>? {
+        return characterRemoteDataSource.getCharacterComics(id).getOrNull()
     }
 }

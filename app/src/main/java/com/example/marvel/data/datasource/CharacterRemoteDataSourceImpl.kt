@@ -3,6 +3,7 @@ package com.example.marvel.data.datasource
 import com.example.marvel.data.networking.CharacterService
 import com.example.marvel.model.JsonResponse
 import com.example.marvel.model.MarvelCharacter
+import com.example.marvel.model.MarvelComic
 import retrofit2.Response
 
 class CharacterRemoteDataSourceImpl(private val characterService: CharacterService) :
@@ -37,6 +38,22 @@ class CharacterRemoteDataSourceImpl(private val characterService: CharacterServi
                 } else {
                     throw  IllegalStateException(response.message())
                 }
+            } else {
+                throw IllegalStateException(response.message())
+            }
+        } catch (t: Throwable) {
+            Result.failure(t)
+        }
+    }
+
+    override suspend fun getCharacterComics(id: Int): Result<List<MarvelComic>?> {
+        return try {
+            val response: Response<JsonResponse<MarvelComic>> =
+                characterService.getCharacterComics(id)
+
+            if (response.isSuccessful) {
+                val comics = response.body()?.data?.results
+                Result.success(comics)
             } else {
                 throw IllegalStateException(response.message())
             }

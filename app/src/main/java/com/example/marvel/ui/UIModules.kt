@@ -11,7 +11,7 @@ object UIModules {
             CharacterListViewModel(get())
         }
         viewModel {
-            CharacterDetailViewModel(get())
+            CharacterDetailViewModel(get(),get())
         }
     }
 

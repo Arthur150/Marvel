@@ -11,6 +11,9 @@ object DomainModules {
             GetCharacterUseCase(get())
         }
         factory {
+            GetCharacterComicsUseCase(get())
+        }
+        factory {
             GetHashMd5UseCase()
         }
     }

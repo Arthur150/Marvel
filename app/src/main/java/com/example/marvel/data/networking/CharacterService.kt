@@ -22,7 +22,6 @@ interface CharacterService {
 
     @GET("/v1/public/characters/{id}/comics")
     suspend fun getCharacterComics(
-        @Path("id") characterId: Int,
-        @Query("offset") offset: Int
+        @Path("id") characterId: Int
     ): Response<JsonResponse<MarvelComic>>
 }
