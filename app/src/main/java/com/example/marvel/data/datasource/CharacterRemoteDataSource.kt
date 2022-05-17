@@ -4,4 +4,5 @@ import com.example.marvel.model.MarvelCharacter
 
 interface CharacterRemoteDataSource {
     suspend fun getAllCharacter(offset: Int): Result<Pair<Int, List<MarvelCharacter>>>
+    suspend fun getCharacter(id: Int): Result<MarvelCharacter>
 }

@@ -15,4 +15,8 @@ class CharacterRepositoryImpl(private val characterRemoteDataSource: CharacterRe
             CharacterPagingSource(characterRemoteDataSource)
         }.flow
     }
+
+    override suspend fun getCharacter(id: Int): MarvelCharacter? {
+        return characterRemoteDataSource.getCharacter(id).getOrNull()
+    }
 }

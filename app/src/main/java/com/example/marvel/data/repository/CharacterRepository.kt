@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface CharacterRepository {
     fun getPaginatedCharacter(): Flow<PagingData<MarvelCharacter>>
+    suspend fun getCharacter(id: Int): MarvelCharacter?
 }
