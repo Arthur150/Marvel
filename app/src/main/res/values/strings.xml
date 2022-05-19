@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="name">name</string>
     <string name="character_avatar">character avatar</string>
+    <string name="comics">Comics</string>
 </resources>

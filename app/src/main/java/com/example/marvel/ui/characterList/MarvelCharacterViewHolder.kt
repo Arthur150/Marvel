@@ -1,7 +1,9 @@
-package com.example.marvel.ui
+package com.example.marvel.ui.characterList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -26,11 +28,20 @@ class MarvelCharacterViewHolder private constructor(
     }
 
     fun bind(marvelCharacter: MarvelCharacter) {
-        binding.characterName.text = marvelCharacter.name
-        binding.characterImage.load("${marvelCharacter.thumbnail.path}.${marvelCharacter.thumbnail.extension}") {
-            crossfade(true)
-            placeholder(R.drawable.ic_iron_man)
-            transformations(CircleCropTransformation())
+        with(binding){
+            root.setOnClickListener { view ->
+                val bundle = bundleOf("characterId" to marvelCharacter.id)
+                view.findNavController().navigate(
+                    R.id.action_characterListFragment_to_characterDetailFragment,
+                    bundle
+                )
+            }
+            characterName.text = marvelCharacter.name
+            characterImage.load("${marvelCharacter.thumbnail.path}.${marvelCharacter.thumbnail.extension}") {
+                crossfade(true)
+                placeholder(R.drawable.ic_iron_man)
+                transformations(CircleCropTransformation())
+            }
         }
     }
 }

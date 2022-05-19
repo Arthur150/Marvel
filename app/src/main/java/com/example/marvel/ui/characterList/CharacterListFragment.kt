@@ -1,4 +1,4 @@
-package com.example.marvel.ui
+package com.example.marvel.ui.characterList
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ class CharacterListFragment : Fragment() {
 
     private val viewModel by viewModel<CharacterListViewModel>()
 
-    private val characterAdapter = CharacterAdapter(MarvelCharacter.Companion)
+    private val characterAdapter = CharacterAdapter(MarvelCharacter)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
