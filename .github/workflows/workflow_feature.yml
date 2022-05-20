@@ -10,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: chmod +x gradlew
-      - run: ./gradlew test
       - run: |
           KEYSTORE_P12_ASC_FILE="keystore.asc"
           echo "${{ secrets.KEYSTORE_P12}}">>"${KEYSTORE_P12_ASC_FILE}"
@@ -35,6 +34,7 @@ jobs:
             --batch \
             --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${API_KEY_PROPERTIES_ASC_FILE}"> "api-key.properties"
+      - run: ./gradlew test
       - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" assembleDevelopmentRelease
       - uses: actions/upload-artifact@v3
         with:
