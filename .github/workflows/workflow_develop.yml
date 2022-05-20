@@ -1,10 +1,10 @@
-name: Workflow - Feature
+name: Workflow - Develop
 on:
   push:
     branches:
-      - 'feature/*'
+      - 'develop'
 jobs:
-  run_test:
+  build_apk:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -34,3 +34,8 @@ jobs:
             --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${API_KEY_PROPERTIES_ASC_FILE}"> "api-key.properties"
       - run: ./gradlew test
+      - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" assembleDevelopmentRelease
+      - uses: actions/upload-artifact@v3
+        with:
+          name: development-release-apk
+          path: app/build/outputs/apk/development/release/app-development-release.apk

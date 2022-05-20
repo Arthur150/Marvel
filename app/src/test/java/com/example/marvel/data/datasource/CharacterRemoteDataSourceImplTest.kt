@@ -25,7 +25,7 @@ class CharacterRemoteDataSourceImplTest: KoinTest {
     fun getCharacterList() = runBlocking {
         val actual = characterRemoteDataSource.getAllCharacter(0).getOrNull()
         val expected = Pair<Int, List<MarvelCharacter>>(
-            46,
+            20,
             ObjectProvider.marvelCharacterListPageOne.data.results
         )
         assertEquals(expected, actual)
@@ -42,7 +42,7 @@ class CharacterRemoteDataSourceImplTest: KoinTest {
 
     @Test
     fun getCharacterComics() = runBlocking {
-        val actual = characterRemoteDataSource.getCharacterComics(0).getOrNull()
+        val actual = characterRemoteDataSource.getCharacterComics(1009368).getOrNull()
         val expected = ObjectProvider.marvelComicsListPageOne.data.results
         assertEquals(expected, actual)
     }
