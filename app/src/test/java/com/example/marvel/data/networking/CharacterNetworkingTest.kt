@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.marvel.manager.ResourcesManager
 import com.example.marvel.model.JsonResponse
 import com.example.marvel.model.MarvelCharacter
+import com.example.marvel.model.MarvelComic
 import com.example.marvel.provider.ObjectProvider
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
@@ -49,5 +50,18 @@ class CharacterNetworkingTest: KoinTest {
         val actual = source.getCharacter(1009368).body()
 
         assertEquals(ObjectProvider.marvelCharacter, actual)
+    }
+
+    @Test
+    fun getComicsPageOne() = runBlocking {
+        val expected = MockResponse().apply {
+            setResponseCode(200)
+            setBody(ResourcesManager.loadResource("get_character_comics.json"))
+        }
+        server.enqueue(expected)
+
+        val actual: JsonResponse<MarvelComic>? = source.getCharacterComics(1009368).body()
+
+        assertEquals(ObjectProvider.marvelComicsListPageOne, actual)
     }
 }
