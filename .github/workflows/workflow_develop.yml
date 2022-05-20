@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - 'develop'
-      - 'feature/*'
 jobs:
   build_apk:
     runs-on: ubuntu-20.04
